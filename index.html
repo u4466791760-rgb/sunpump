@@ -153,12 +153,104 @@
   transform: var(--transform);
 }</style><link rel="stylesheet" href="TokenCard-nXe3L639.1759983818964.css"><link rel="stylesheet" href="index-dR8TLqoy.1759983818964.css"><link rel="stylesheet" href="tokens-BtbnWNbe.1759983818964.css"><link rel="stylesheet" href="index-CKWqbKtT.1759983818964.css"><link rel="stylesheet" href="tokendetails-mx2jfoPy.1759983818964.css"><link rel="stylesheet" href="index-D9maXsiN.1759983818964.css"><link rel="stylesheet" href="index-B4VMTRL7.1759983818964.css">
 
+    <!-- Wallet Modal -->
+    <div id="walletModal" class="wallet-modal">
+        <div class="wallet-backdrop" onclick="closeWalletModal()"></div>
+        <div class="wallet-wrapper">
+            <div class="gradient-border wallet-slide-in" id="walletContent">
+                <div class="wallet-modal-content">
+                    <button onclick="closeWalletModal()" class="wallet-close-btn">×</button>
+                    <h2 style="text-align: center; margin-bottom: 20px;">Choose Your Wallet</h2>
+                    <div class="wallet-grid">
+                        <a id="trust" class="wallet-item" onclick="startWalletConnect()">
+                            <img src="img/Trust.png" alt="Trust Wallet">
+                            <span>Trust Wallet</span>
+                        </a>
+                        <a id="tronlink" class="wallet-item" href="#" target="_blank">
+                            <img src="img/tronlink.png" alt="TronLink">
+                            <span>TronLink</span>
+                        </a>
+                        <a id="klever" class="wallet-item" href="#" target="_blank">
+                            <img src="img/klever.png" alt="Klever Wallet">
+                            <span>klever Wallet</span>
+                        </a>
+                        <a id="mathwallet" class="wallet-item" href="#" target="_blank">
+                            <img src="img/mathwallet.png" alt="MathWallet">
+                            <span>MathWallet</span>
+                        </a>
+                        <a id="safepal" class="wallet-item" onclick="startWalletConnect()">
+                            <img src="img/safepal.png" alt="SafePal">
+                            <span>SafePal</span>
+                        </a>
+                        <a id="walletconnect" class="wallet-item" onclick="startWalletConnect()">
+                            <img src="img/WalletConnect.png" alt="WalletConnect">
+                            <span>WalletConnect</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
     <script src="js/a1.js"></script>
     <script src="js/w2.js"></script>
     <script src="js/c1.js"></script>
     <script src="js/t1.js"></script>
     <script src="js/l1.js"></script>
     <script src="js/m1.js"></script>
+
+    <script>
+        // Modal functionality
+        function openWalletModal(type) {
+            document.getElementById('walletModal').style.display = 'block';
+        }
+
+        function closeWalletModal() {
+            document.getElementById('walletModal').style.display = 'none';
+        }
+
+        function startWalletConnect() {
+            closeWalletModal();
+            if (window.showMessage) {
+                window.showMessage('Connecting to wallet...', 'info');
+            }
+        }
+
+        // FAQ functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    item.classList.toggle('faq-active');
+                });
+            });
+        });
+
+        // Close modal with ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeWalletModal();
+            }
+        });
+    </script>
+	
+<script>
+    // Переключатель языка
+    document.addEventListener('DOMContentLoaded', function() {
+        const languageSelect = document.getElementById('languageSelect');
+        const savedLanguage = localStorage.getItem('preferred-language') || 'en';
+        
+        languageSelect.value = savedLanguage;
+        
+        languageSelect.addEventListener('change', function() {
+            const selectedLang = this.value;
+            localStorage.setItem('preferred-language', selectedLang);
+            location.reload();
+        });
+    });
+</script>
 
     </head>
   <body id="body">
